@@ -4,11 +4,13 @@ A professional React + TypeScript component library for rendering HTML content a
 
 ## Features
 
+- **Continuous Scroll Mode:** View all slides in a continuous scrollable list or one-by-one.
 - **Sandboxed Rendering:** Uses iframes with sandbox attributes for safe, isolated rendering of slides.
+- **Independent Layout:** Header and controls are fixed while slides and filmstrip scroll independently.
+- **Intersection Sync:** Automatically highlights the currently visible slide in the filmstrip.
 - **Versatile Sources:** Supports raw HTML strings, URLs, and local HTML files.
 - **Interactive Filmstrip:** High-performance, lazy-loaded thumbnails for navigation.
 - **Keyboard Navigation:** Full support for arrow keys, Home, and End.
-- **Distributable:** Pre-bundled with ESM and UMD support, including TypeScript type definitions.
 
 ## Installation
 
@@ -31,11 +33,13 @@ const slides = [
 
 function App() {
   return (
-    <HtmlSlideViewer 
-      slides={slides}
-      previewWidth={960}
-      previewHeight={540}
-    />
+    <div style={{ height: '100vh', width: '100vw' }}>
+      <HtmlSlideViewer 
+        slides={slides}
+        viewMode="scroll" // Enable continuous scrolling
+        scrollBehavior="smooth"
+      />
+    </div>
   );
 }
 ```
@@ -52,13 +56,16 @@ function App() {
 
 | Prop | Type | Default | Description |
 | :--- | :--- | :--- | :--- |
-| `slides` | `HtmlSlideSource[]` | (Required) | Array of slide content objects. |
+| `slides` | `HtmlSlideSource[]` | (Required) | Array of slide objects (`{ id, type, content, title }`). |
+| `viewMode` | `'single' \| 'scroll'` | `'single'` | One-by-one or continuous vertical scrolling. |
+| `scrollBehavior`| `'smooth' \| 'auto'` | `'smooth'` | Transition style when navigating to slides. |
 | `initialSlide` | `number` | `0` | The slide to display initially. |
-| `previewWidth` | `number` | `960` | Width of the main preview area. |
-| `previewHeight` | `number` | `540` | Height of the main preview area. |
+| `previewWidth` | `number` | `960` | Fixed width for slides. |
+| `previewHeight` | `number` | `540` | Fixed height for slides. |
 | `showFilmstrip` | `boolean` | `true` | Whether to show the thumbnail track. |
-| `filmstripPosition` | `string` | `'right'` | Position of the filmstrip (`'top' \| 'bottom' \| 'left' \| 'right'`). |
+| `filmstripPosition` | `string` | `'right'` | Position: `'top' \| 'bottom' \| 'left' \| 'right'`. |
 | `onSlideChange` | `(index, slide) => void` | - | Callback triggered when the slide changes. |
+| `sandboxIframes` | `boolean` | `true` | Whether to sandbox slide iframes. |
 
 ## Development
 

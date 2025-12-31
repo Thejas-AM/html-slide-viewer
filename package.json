@@ -3,6 +3,10 @@
   "private": false,
   "version": "1.0.0",
   "type": "module",
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "browser": "./dist/html-slide-viewer.js",
   "files": [
     "dist"
   ],
@@ -41,5 +45,15 @@
     "typescript-eslint": "^8.46.4",
     "vite": "^7.2.4",
     "vite-plugin-dts": "^4.5.4"
-  }
+  },
+  "keywords": [
+    "react",
+    "slide-viewer",
+    "html-slides",
+    "presentation",
+    "iframe-viewer",
+    "scrollable-slides"
+  ],
+  "author": "Thejas",
+  "license": "MIT"
 }
